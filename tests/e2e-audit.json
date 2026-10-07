@@ -1,0 +1,86 @@
+{
+  "tested_at": "2026-10-07T08:53:40.209924+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "transport": "official remote-debug; signature verification enabled",
+  "browser_test_run": true,
+  "unit_contract_tests": "32 passed, 1 warning in 0.62s",
+  "marketplace_toolkit_passed": true,
+  "package_sha256": "970c14a021fe3691a1f1027cf066e3183d00634e0b7c22b063bd303492df8052",
+  "exact_package_serverless_install_passed": true,
+  "marketplace_install_tested": false,
+  "cloud_tested": false,
+  "cases": [
+    {
+      "case": "Midjourney Audit Batch",
+      "tool": "midjourney_tasks_retrieve_batch",
+      "workflow_run_id": "a99d7834-6d15-441c-92f8-8d9b0e070546",
+      "workflow_status": "succeeded",
+      "service_status": "succeeded",
+      "task_id": "",
+      "trace_id": "",
+      "media_urls": [
+        "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png?imageMogr2/thumbnail/!50p",
+        "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png"
+      ],
+      "error": null,
+      "new_submission": false,
+      "media_verification": [
+        {
+          "case": "Midjourney Audit Batch",
+          "size": 1111906,
+          "sha256": "aa9181d2e3d1f880e699c54cee87ee6e8f9a08ca2b6af7a2e0ab4faa2fa18e23",
+          "width": 1024,
+          "height": 1024,
+          "format": "PNG"
+        },
+        {
+          "case": "Midjourney Audit Batch",
+          "size": 4750368,
+          "sha256": "c0d176cc4adc561e075b206eba69874ac52c5ff66a9dfe03d701d5833789048e",
+          "width": 2048,
+          "height": 2048,
+          "format": "PNG"
+        }
+      ],
+      "result_fields": [
+        "items"
+      ],
+      "screenshot": "evidence/midjourney-audit-batch.png",
+      "workflow": "evidence/midjourney-audit-batch-workflow.json"
+    },
+    {
+      "case": "Midjourney Shorten Audit",
+      "tool": "midjourney_shorten",
+      "workflow_run_id": "7234790f-1af3-4cf9-8ef5-137489abee62",
+      "workflow_status": "succeeded",
+      "service_status": "succeeded",
+      "task_id": "",
+      "trace_id": "",
+      "media_urls": [],
+      "error": null,
+      "new_submission": true,
+      "billing": [
+        {
+          "id": "ad292e65-c4af-47a4-a590-771ccabe0247",
+          "trace_id": "e48cb791-fe5f-4c95-b3af-2618d475469b",
+          "status_code": 200,
+          "deducted_amount": 0.18,
+          "created_at": "2026-10-07T08:33:52.035112Z"
+        }
+      ],
+      "billing_match": "owned credential, API and browser run window",
+      "media_verification": [],
+      "result_fields": [
+        "cost",
+        "elapsed",
+        "finished_at",
+        "prompts",
+        "started_at"
+      ],
+      "screenshot": "evidence/midjourney-shorten-audit.png",
+      "workflow": "evidence/midjourney-shorten-audit-workflow.json"
+    }
+  ],
+  "primary_blocked": false,
+  "scope_note": "Recorded cases only. Batch regressions reuse earlier paid successful tasks; those media generations are not billed or claimed as new. New paid calls have separate usage reconciliation. Optional untested models/actions are not claimed as passed; original failures and their corrections are preserved."
+}

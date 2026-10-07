@@ -43,15 +43,9 @@ parameters:
     zh_Hans: 追踪 ID 列表
   human_description:
     en_US: Set trace ids for this operation. Enter a JSON array or object where applicable.
-      Enter a JSON array or object where applicable. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable. Enter a JSON array or object where applicable.
     zh_Hans: 批量查询的追踪 ID 列表。当 `action` 为 `retrieve_batch` 时使用。 数组或对象请使用 JSON 格式。
   llm_description: Set trace ids for this operation. Enter a JSON array or object
-    where applicable. Enter a JSON array or object where applicable. Enter a JSON
-    array or object where applicable. Enter a JSON array or object where applicable.
-    Enter a JSON array or object where applicable. Enter a JSON array or object where
-    applicable.
+    where applicable.
 - name: offset
   type: number
   required: false
