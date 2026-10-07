@@ -8,31 +8,33 @@ description:
   human:
     en_US: Generate or transform images via Ace Data Cloud Midjourney Imagine API.
     zh_Hans: 通过 Ace Data Cloud Midjourney Imagine API 进行文生图与图片变换。
-  llm: Generate or transform an image with Midjourney Imagine API. Generation returns
-    a task ID. Query the same task until complete; never resubmit a pending generation.
+  llm: Generate or transform images via Ace Data Cloud Midjourney Imagine API. For
+    asynchronous results, preserve task_id and use the task retrieval tool until completion.
+    A successful submission is not completed output.
 parameters:
 - name: mask
   type: string
   required: false
+  form: form
   label:
     en_US: Mask URL
     zh_Hans: 蒙版链接
   human_description:
     en_US: Optional mask image URL for variation_region action.
-    zh_Hans: 可选蒙版图片链接，用于 variation_region 操作。
+    zh_Hans: 用于操作的蒙版图像 URL，可用于特定操作 `variation_region`（局部重绘）。
   llm_description: Optional mask image URL for variation_region action.
-  form: form
 - name: mode
   type: select
   required: false
+  form: form
   label:
     en_US: Mode
     zh_Hans: 模式
   human_description:
     en_US: Generation mode.
-    zh_Hans: 生成模式。
+    zh_Hans: API 运行模式，可选值为 `fast`（快速）、`relax`（放松）或 `turbo`（极速）。V8.2 支持三种模式；V8.1 目前仅支持
+      `fast` 和 `relax`。
   llm_description: Generation mode.
-  form: form
   default: fast
   options:
   - value: fast
@@ -50,73 +52,95 @@ parameters:
 - name: action
   type: string
   required: false
+  form: form
   label:
     en_US: Action
     zh_Hans: 操作
   human_description:
-    en_US: Operation action. Default is generate; e.g. upscale1/variation2/zoom_out_2x.
-    zh_Hans: 操作类型，默认 generate，也可填 upscale1/variation2/zoom_out_2x 等。
-  llm_description: Operation action. Default is generate; e.g. upscale1/variation2/zoom_out_2x.
-  form: form
+    en_US: Set action; supported combinations are described by the current API.
+    zh_Hans: 操作类型。首次生成时使用 `generate`，后续操作时使用响应中 `actions` 字段返回的动作值，也可指定特定操作对已生成的图像进行处理。
+  llm_description: Set action; supported combinations are described by the current
+    API.
   default: generate
 - name: prompt
   type: string
   required: false
+  form: llm
   label:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
     en_US: Text prompt used to generate the image (required when action=generate).
-    zh_Hans: 生成图片的提示词（action=generate 时必填）。
+    zh_Hans: 用于生成图像的英文描述词（提示词）。
   llm_description: Text prompt used to generate the image (required when action=generate).
-  form: llm
+- name: timeout
+  type: number
+  required: false
+  form: form
+  label:
+    en_US: Timeout
+    zh_Hans: timeout
+  human_description:
+    en_US: Set timeout for this operation.
+    zh_Hans: API 返回数据的超时时间（秒）。
+  llm_description: Set timeout for this operation.
 - name: image_id
   type: string
   required: false
+  form: form
   label:
     en_US: Image ID
     zh_Hans: 图片ID
   human_description:
     en_US: Required when action is not generate.
-    zh_Hans: action 非 generate 时必填。
+    zh_Hans: 已生成图像的 ID，用于在其基础上继续执行后续操作。
   llm_description: Required when action is not generate.
-  form: form
 - name: translation
   type: boolean
   required: false
+  form: form
   label:
     en_US: Auto translate
     zh_Hans: 自动翻译
   human_description:
     en_US: Auto translate non-English prompt.
-    zh_Hans: 自动翻译非英文提示词。
+    zh_Hans: 是否为非英文提示词启用自动翻译，因为 Midjourney 官方仅支持英文。
   llm_description: Auto translate non-English prompt.
+- name: callback_url
+  type: string
+  required: false
   form: form
-  default: false
+  label:
+    en_US: Callback Url
+    zh_Hans: 回调 URL
+  human_description:
+    en_US: Set callback url for this operation.
+    zh_Hans: 用于异步通知的 Webhook 回调 URL。
+  llm_description: Set callback url for this operation.
 - name: split_images
   type: boolean
   required: false
+  form: form
   label:
     en_US: Split 2x2
     zh_Hans: 拆分2x2
   human_description:
     en_US: Split a 2x2 grid into single images when supported.
-    zh_Hans: 将 2x2 预览图拆分为单张（如支持）。
+    zh_Hans: 是否将生成的图像拆分为多张单图，拆分后通过 `sub_image_urls` 字段返回。默认为 `false`。
   llm_description: Split a 2x2 grid into single images when supported.
-  form: form
-  default: false
 - name: version
   type: select
   required: false
+  form: form
   label:
     en_US: Version
     zh_Hans: 版本
   human_description:
     en_US: Midjourney model version. V8 is the latest with HD and quality 4 support.
-    zh_Hans: Midjourney 模型版本。V8 为最新版本，支持 HD 和 quality 4。
+    zh_Hans: Midjourney 模型版本，可选 `'8.2'`、`'8.1'`、`'8'`、`'7'`、`'6.1'`、`'6'` 或 `'5.2'`。推荐使用最新版本
+      `'8.2'`。
   llm_description: Midjourney model version. V8 is the latest with HD and quality
     4 support.
-  form: form
   default: '8.2'
   options:
   - value: '8.2'
@@ -150,53 +174,51 @@ parameters:
 - name: hd
   type: boolean
   required: false
+  form: form
   label:
     en_US: HD Mode
     zh_Hans: HD 高清
   human_description:
     en_US: Enable HD mode for 2K resolution output (V8 only, costs 4x).
-    zh_Hans: 启用 HD 高清模式输出 2K 分辨率图像（仅 V8，消耗 4 倍积分）。
+    zh_Hans: 是否启用 HD 高清出图。V8.2 支持 HD；V8.1 的 SD 出图约消耗 0.8 GPU 分钟，HD（2K）约消耗 1.3 GPU
+      分钟。V8.0 Alpha 的 HD 规则不同。
   llm_description: Enable HD mode for 2K resolution output (V8 only, costs 4x).
-  form: form
-  default: false
 - name: quality
   type: string
   required: false
+  form: form
   label:
     en_US: Quality
     zh_Hans: 画质
   human_description:
     en_US: Image quality level.
-    zh_Hans: 图像画质等级。
+    zh_Hans: 图像生成质量参数。V8.2 支持 `--quality` / `--q`；不支持在 V8.1 中使用 `--quality` / `--q`，请改用
+      `hd` 获得更高分辨率。
   llm_description: Image quality level.
-  form: form
-  default: '1'
 - name: style_reference
   type: boolean
   required: false
+  form: form
   label:
     en_US: Style Reference
     zh_Hans: 风格参考
   human_description:
     en_US: Whether the prompt uses --sref style references (V8 premium feature).
-    zh_Hans: 提示词是否使用了 --sref 风格参考（V8 高级特性）。
+    zh_Hans: 提示词中是否使用了风格参考（`--sref`）。该字段用于准确计费和用量审计。
   llm_description: Whether the prompt uses --sref style references (V8 premium feature).
-  form: form
-  default: false
 - name: moodboard
   type: boolean
   required: false
+  form: form
   label:
     en_US: Moodboard
     zh_Hans: 情绪板
   human_description:
     en_US: Whether using moodboard mode with multiple reference images (V8 premium
       feature).
-    zh_Hans: 是否使用多参考图的情绪板模式（V8 高级特性）。
+    zh_Hans: 提示词中是否使用了情绪板（moodboard）参考。该字段用于准确计费和用量审计。
   llm_description: Whether using moodboard mode with multiple reference images (V8
     premium feature).
-  form: form
-  default: false
 output_schema:
   type: object
   properties:

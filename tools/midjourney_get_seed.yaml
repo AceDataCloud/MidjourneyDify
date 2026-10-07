@@ -1,0 +1,46 @@
+identity:
+  name: midjourney_get_seed
+  author: acedatacloud
+  label:
+    en_US: Midjourney Get Seed
+    zh_Hans: Midjourney 查询种子
+description:
+  human:
+    en_US: Get Seed through the Ace Data Cloud Midjourney API.
+    zh_Hans: 通过 Ace Data Cloud Midjourney API 执行 Get Seed。
+  llm: Get Seed through the Ace Data Cloud Midjourney API. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
+parameters:
+- name: image_id
+  type: string
+  required: true
+  form: form
+  label:
+    en_US: Image Id
+    zh_Hans: 图片 ID
+  human_description:
+    en_US: Set image id for this operation.
+    zh_Hans: 图片的 ID。
+  llm_description: Set image id for this operation.
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/midjourney_get_seed.py

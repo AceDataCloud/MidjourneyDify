@@ -9,21 +9,21 @@ description:
     en_US: Translate Chinese prompt to English via Ace Data Cloud Midjourney Translate
       API.
     zh_Hans: 通过 Ace Data Cloud Midjourney Translate API 将中文提示词翻译为英文。
-  llm: Translate prompt content for Midjourney. Generation returns a task ID. Query
-    the same task until complete; never resubmit a pending generation.
+  llm: Translate Chinese prompt to English via Ace Data Cloud Midjourney Translate
+    API. For asynchronous results, preserve task_id and use the task retrieval tool
+    until completion. A successful submission is not completed output.
 parameters:
 - name: content
   type: string
   required: true
+  form: form
   label:
     en_US: Content
     zh_Hans: 内容
   human_description:
     en_US: Chinese content to translate.
-    zh_Hans: 需要翻译的中文内容。
+    zh_Hans: 需要翻译为英文的提示词。
   llm_description: Chinese content to translate.
-  form: form
-  default: generate
 output_schema:
   type: object
   properties:

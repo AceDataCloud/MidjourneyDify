@@ -1,0 +1,46 @@
+identity:
+  name: midjourney_shorten
+  author: acedatacloud
+  label:
+    en_US: Midjourney Shorten
+    zh_Hans: Midjourney 精简提示词
+description:
+  human:
+    en_US: Shorten through the Ace Data Cloud Midjourney API.
+    zh_Hans: 通过 Ace Data Cloud Midjourney API 执行 Shorten。
+  llm: Shorten through the Ace Data Cloud Midjourney API. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
+parameters:
+- name: prompt
+  type: string
+  required: true
+  form: llm
+  label:
+    en_US: Prompt
+    zh_Hans: 提示词
+  human_description:
+    en_US: Set prompt for this operation.
+    zh_Hans: 待分析和缩短的提示词。Midjourney 提示词分析器会读取该提示词，标出权重最高的词元，并生成 5 条保留核心意图的缩短候选提示词。
+  llm_description: Set prompt for this operation.
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/midjourney_shorten.py

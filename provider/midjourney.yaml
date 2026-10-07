@@ -9,8 +9,8 @@ identity:
   description:
     en_US: Use the Ace Data Cloud Midjourney APIs in Dify workflows.
     zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Midjourney API。
-  icon: icon.jpg
-  icon_dark: icon.jpg
+  icon: icon.png
+  icon_dark: icon.png
   tags:
   - image
 credentials_for_provider:
@@ -33,7 +33,10 @@ tools:
 - tools/midjourney_describe.yaml
 - tools/midjourney_translate.yaml
 - tools/midjourney_videos.yaml
+- tools/midjourney_get_seed.yaml
+- tools/midjourney_shorten.yaml
 - tools/midjourney_task_retrieve.yaml
+- tools/midjourney_tasks_retrieve_batch.yaml
 extra:
   python:
     source: provider/midjourney.py

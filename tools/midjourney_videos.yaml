@@ -8,20 +8,23 @@ description:
   human:
     en_US: Generate or extend videos via Ace Data Cloud Midjourney Videos API.
     zh_Hans: 通过 Ace Data Cloud Midjourney Videos API 生成或扩展视频。
-  llm: Generate or extend Midjourney videos. Generation returns a task ID. Query the
-    same task until complete; never resubmit a pending generation.
+  llm: Generate or extend videos via Ace Data Cloud Midjourney Videos API. For asynchronous
+    results, preserve task_id and use the task retrieval tool until completion. A
+    successful submission is not completed output.
 parameters:
 - name: action
   type: select
   required: false
+  form: form
   label:
     en_US: Action
     zh_Hans: 操作
   human_description:
-    en_US: generate (default) or extend.
-    zh_Hans: generate（默认）或 extend。
-  llm_description: generate (default) or extend.
-  form: form
+    en_US: Set action; supported combinations are described by the current API.
+    zh_Hans: 操作类型。使用 `generate` 从首帧图像生成新视频（必须提供 `image_url`）；使用 `extend` 对已生成的视频进行续写延伸（必须提供
+      `video_id`）。
+  llm_description: Set action; supported combinations are described by the current
+    API.
   default: generate
   options:
   - value: generate
@@ -35,14 +38,14 @@ parameters:
 - name: mode
   type: select
   required: false
+  form: form
   label:
     en_US: Mode
     zh_Hans: 模式
   human_description:
     en_US: Generation mode.
-    zh_Hans: 生成模式。
+    zh_Hans: 视频生成任务的速度模式，默认为 `fast`（快速）。
   llm_description: Generation mode.
-  form: form
   default: fast
   options:
   - value: fast
@@ -56,14 +59,15 @@ parameters:
 - name: resolution
   type: select
   required: false
+  form: form
   label:
     en_US: Resolution
     zh_Hans: 清晰度
   human_description:
-    en_US: Video resolution (default 720p).
-    zh_Hans: 视频清晰度（默认 720p）。
-  llm_description: Video resolution (default 720p).
-  form: form
+    en_US: Set resolution; supported combinations are described by the current API.
+    zh_Hans: 视频生成任务的分辨率，默认为 `720p`。
+  llm_description: Set resolution; supported combinations are described by the current
+    API.
   options:
   - value: 480p
     label:
@@ -76,69 +80,80 @@ parameters:
 - name: prompt
   type: string
   required: false
+  form: llm
   label:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
     en_US: Video prompt.
-    zh_Hans: 视频提示词。
+    zh_Hans: 视频生成任务的提示词。
   llm_description: Video prompt.
-  form: llm
 - name: video_id
   type: string
   required: false
+  form: form
   label:
     en_US: Video ID
     zh_Hans: 视频ID
   human_description:
     en_US: Required when action=extend.
-    zh_Hans: action=extend 时必填。
+    zh_Hans: 延伸视频时需要指定的目标视频 ID。
   llm_description: Required when action=extend.
-  form: form
 - name: video_index
   type: number
   required: false
+  form: form
   label:
     en_US: Video index
     zh_Hans: 视频索引
   human_description:
     en_US: Optional. Index of video_urls to extend (0-based).
-    zh_Hans: 可选，要扩展的 video_urls 索引（从 0 开始）。
+    zh_Hans: 延伸操作时需要指定要延伸的视频索引，索引从 0 开始（Midjourney 单次生成 4 个视频，对应索引 0～3）。
   llm_description: Optional. Index of video_urls to extend (0-based).
-  form: form
 - name: loop
   type: boolean
   required: false
+  form: form
   label:
     en_US: Loop
     zh_Hans: 循环
   human_description:
     en_US: Generate loop video.
-    zh_Hans: 是否生成循环视频。
+    zh_Hans: 是否生成循环播放的视频，默认为 `false`。
   llm_description: Generate loop video.
-  form: form
 - name: image_url
   type: string
   required: false
+  form: form
   label:
     en_US: Start Image URL
     zh_Hans: 首帧图片URL
   human_description:
     en_US: Required when action=generate.
-    zh_Hans: action=generate 时必填。
+    zh_Hans: 生成视频时的首帧参考图像链接。当 `action` 为 `generate` 时必填（Midjourney 视频生成仅支持图生视频，不支持纯文本生视频）。
   llm_description: Required when action=generate.
-  form: form
 - name: end_image_url
   type: string
   required: false
+  form: form
   label:
     en_US: End Image URL
     zh_Hans: 尾帧图片URL
   human_description:
     en_US: Optional end frame reference.
-    zh_Hans: 可选尾帧参考图。
+    zh_Hans: 指定视频末帧所使用的参考图像链接。
   llm_description: Optional end frame reference.
+- name: callback_url
+  type: string
+  required: false
   form: form
+  label:
+    en_US: Callback Url
+    zh_Hans: 回调 URL
+  human_description:
+    en_US: Set callback url for this operation.
+    zh_Hans: 异步通知的 Webhook 回调地址。
+  llm_description: Set callback url for this operation.
 output_schema:
   type: object
   properties:
