@@ -1,0 +1,162 @@
+identity:
+  name: midjourney_videos
+  author: acedatacloud
+  label:
+    en_US: Midjourney Videos
+    zh_Hans: Midjourney 视频
+description:
+  human:
+    en_US: Generate or extend videos via Ace Data Cloud Midjourney Videos API.
+    zh_Hans: 通过 Ace Data Cloud Midjourney Videos API 生成或扩展视频。
+  llm: Generate or extend Midjourney videos. Generation returns a task ID. Query the
+    same task until complete; never resubmit a pending generation.
+parameters:
+- name: action
+  type: select
+  required: false
+  label:
+    en_US: Action
+    zh_Hans: 操作
+  human_description:
+    en_US: generate (default) or extend.
+    zh_Hans: generate（默认）或 extend。
+  llm_description: generate (default) or extend.
+  form: form
+  default: generate
+  options:
+  - value: generate
+    label:
+      en_US: generate
+      zh_Hans: generate
+  - value: extend
+    label:
+      en_US: extend
+      zh_Hans: extend
+- name: mode
+  type: select
+  required: false
+  label:
+    en_US: Mode
+    zh_Hans: 模式
+  human_description:
+    en_US: Generation mode.
+    zh_Hans: 生成模式。
+  llm_description: Generation mode.
+  form: form
+  default: fast
+  options:
+  - value: fast
+    label:
+      en_US: fast
+      zh_Hans: fast
+  - value: turbo
+    label:
+      en_US: turbo
+      zh_Hans: turbo
+- name: resolution
+  type: select
+  required: false
+  label:
+    en_US: Resolution
+    zh_Hans: 清晰度
+  human_description:
+    en_US: Video resolution (default 720p).
+    zh_Hans: 视频清晰度（默认 720p）。
+  llm_description: Video resolution (default 720p).
+  form: form
+  options:
+  - value: 480p
+    label:
+      en_US: 480p
+      zh_Hans: 480p
+  - value: 720p
+    label:
+      en_US: 720p
+      zh_Hans: 720p
+- name: prompt
+  type: string
+  required: false
+  label:
+    en_US: Prompt
+    zh_Hans: 提示词
+  human_description:
+    en_US: Video prompt.
+    zh_Hans: 视频提示词。
+  llm_description: Video prompt.
+  form: llm
+- name: video_id
+  type: string
+  required: false
+  label:
+    en_US: Video ID
+    zh_Hans: 视频ID
+  human_description:
+    en_US: Required when action=extend.
+    zh_Hans: action=extend 时必填。
+  llm_description: Required when action=extend.
+  form: form
+- name: video_index
+  type: number
+  required: false
+  label:
+    en_US: Video index
+    zh_Hans: 视频索引
+  human_description:
+    en_US: Optional. Index of video_urls to extend (0-based).
+    zh_Hans: 可选，要扩展的 video_urls 索引（从 0 开始）。
+  llm_description: Optional. Index of video_urls to extend (0-based).
+  form: form
+- name: loop
+  type: boolean
+  required: false
+  label:
+    en_US: Loop
+    zh_Hans: 循环
+  human_description:
+    en_US: Generate loop video.
+    zh_Hans: 是否生成循环视频。
+  llm_description: Generate loop video.
+  form: form
+- name: image_url
+  type: string
+  required: false
+  label:
+    en_US: Start Image URL
+    zh_Hans: 首帧图片URL
+  human_description:
+    en_US: Required when action=generate.
+    zh_Hans: action=generate 时必填。
+  llm_description: Required when action=generate.
+  form: form
+- name: end_image_url
+  type: string
+  required: false
+  label:
+    en_US: End Image URL
+    zh_Hans: 尾帧图片URL
+  human_description:
+    en_US: Optional end frame reference.
+    zh_Hans: 可选尾帧参考图。
+  llm_description: Optional end frame reference.
+  form: form
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/midjourney_videos.py

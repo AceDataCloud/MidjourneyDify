@@ -1,0 +1,33 @@
+{
+  "backend_revision": "7b4bbf0e4f6b83c273baed1d5b8e9bea0f3ece1c",
+  "apis": [
+    {
+      "path": "/midjourney/imagine",
+      "spec": "openapi/62ec82bd-7de3-427f-b71a-ab3551ac7677.json"
+    },
+    {
+      "path": "/midjourney/edits",
+      "spec": "openapi/9c392b44-071e-47e6-b08e-f254fe98fd22.json"
+    },
+    {
+      "path": "/midjourney/describe",
+      "spec": "openapi/362de49d-80f1-4844-9f50-1f751e010dfe.json"
+    },
+    {
+      "path": "/midjourney/translate",
+      "spec": "openapi/45761477-634a-4b7f-99c3-eaca4aaea716.json"
+    },
+    {
+      "path": "/midjourney/videos",
+      "spec": "openapi/269be0f1-c0e8-4c41-83d9-f0c107e553ae.json"
+    }
+  ],
+  "icon_source": {
+    "repository": "AceDataCloud/Dify",
+    "revision": "eaf0e68cd34cfe4cadece7a9ee34a98aac6b961e^",
+    "path": "plugins/midjourney/_assets/icon.jpg"
+  },
+  "icon_sha256": {
+    "icon.jpg": "dcb526e6eb5339fa1041337926df5e618221956c93c38a62a159ae455c6ed582"
+  }
+}

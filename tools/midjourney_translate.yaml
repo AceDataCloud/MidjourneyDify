@@ -1,0 +1,47 @@
+identity:
+  name: midjourney_translate
+  author: acedatacloud
+  label:
+    en_US: Midjourney Translate
+    zh_Hans: Midjourney 翻译
+description:
+  human:
+    en_US: Translate Chinese prompt to English via Ace Data Cloud Midjourney Translate
+      API.
+    zh_Hans: 通过 Ace Data Cloud Midjourney Translate API 将中文提示词翻译为英文。
+  llm: Translate prompt content for Midjourney. Generation returns a task ID. Query
+    the same task until complete; never resubmit a pending generation.
+parameters:
+- name: content
+  type: string
+  required: true
+  label:
+    en_US: Content
+    zh_Hans: 内容
+  human_description:
+    en_US: Chinese content to translate.
+    zh_Hans: 需要翻译的中文内容。
+  llm_description: Chinese content to translate.
+  form: form
+  default: generate
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/midjourney_translate.py
