@@ -1,0 +1,65 @@
+{
+  "tested_at": "2026-10-07T06:27:27.091987+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "transport": "official remote-debug; signature verification true",
+  "browser_test_run": true,
+  "marketplace_install_tested": false,
+  "cloud_tested": false,
+  "cases": [
+    {
+      "case": "Midjourney Dify E2E",
+      "operation": "midjourney_imagine",
+      "workflow_run_id": "5fb1107d-b886-48fc-9a09-7941a31420ad",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "task_id": "df888059-a0e0-447a-8fc1-8f5fdbdc6d29",
+      "trace_id": "c831734c-6087-4cf7-8890-318a039f1572",
+      "media_urls": [
+        "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png?imageMogr2/thumbnail/!50p"
+      ],
+      "output": {
+        "actions": [
+          "upscale1",
+          "upscale2",
+          "upscale3",
+          "upscale4",
+          "reroll",
+          "variation1",
+          "variation2",
+          "variation3",
+          "variation4"
+        ],
+        "image_height": 1024,
+        "image_id": "1557276994230550528",
+        "image_url": "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png?imageMogr2/thumbnail/!50p",
+        "image_width": 1024,
+        "progress": 100,
+        "raw_image_height": 2048,
+        "raw_image_url": "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png",
+        "raw_image_width": 2048,
+        "success": true,
+        "task_id": "df888059-a0e0-447a-8fc1-8f5fdbdc6d29"
+      },
+      "billing": {
+        "id": "27183184-9529-4dda-abd7-c0090f09eaba",
+        "trace_id": "c831734c-6087-4cf7-8890-318a039f1572",
+        "status_code": 200,
+        "deducted_amount": 0.27,
+        "created_at": "2026-10-07T06:21:25.964063Z"
+      },
+      "media_verification": [
+        {
+          "case": "Midjourney Dify E2E",
+          "size": 1111906,
+          "sha256": "aa9181d2e3d1f880e699c54cee87ee6e8f9a08ca2b6af7a2e0ab4faa2fa18e23",
+          "width": 1024,
+          "height": 1024,
+          "format": "PNG"
+        }
+      ],
+      "screenshot": "evidence/midjourney-dify-e2e.png",
+      "workflow": "evidence/midjourney-dify-e2e-workflow.json"
+    }
+  ],
+  "scope_note": "These completed cases establish the primary plugin operation. Additional exposed operations require their own case before claiming full coverage."
+}
