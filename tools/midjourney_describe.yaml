@@ -1,0 +1,45 @@
+identity:
+  name: midjourney_describe
+  author: acedatacloud
+  label:
+    en_US: Midjourney Describe
+    zh_Hans: Midjourney 图片描述
+description:
+  human:
+    en_US: Get descriptions for an image via Ace Data Cloud Midjourney Describe API.
+    zh_Hans: 通过 Ace Data Cloud Midjourney Describe API 获取图片描述。
+  llm: Describe an image via Midjourney Describe API. Generation returns a task ID.
+    Query the same task until complete; never resubmit a pending generation.
+parameters:
+- name: image_url
+  type: string
+  required: true
+  label:
+    en_US: Image URL
+    zh_Hans: 图片URL
+  human_description:
+    en_US: Input image URL.
+    zh_Hans: 输入图片链接。
+  llm_description: Input image URL.
+  form: form
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/midjourney_describe.py

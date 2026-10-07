@@ -1,0 +1,290 @@
+{
+  "nodes": [
+    {
+      "id": "start",
+      "type": "custom",
+      "data": {
+        "type": "start",
+        "title": "Start",
+        "desc": "",
+        "variables": [],
+        "selected": false
+      },
+      "position": {
+        "x": 0,
+        "y": 100
+      },
+      "width": 242,
+      "height": 73,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "generate",
+      "type": "custom",
+      "data": {
+        "type": "tool",
+        "title": "Midjourney",
+        "desc": "",
+        "provider_id": "acedatacloud/midjourney/midjourney",
+        "provider_name": "acedatacloud/midjourney/midjourney",
+        "provider_type": "builtin",
+        "tool_name": "midjourney_imagine",
+        "tool_label": "Midjourney Imagine",
+        "tool_configurations": {
+          "mode": {
+            "type": "constant",
+            "value": "fast"
+          },
+          "action": {
+            "type": "constant",
+            "value": "generate"
+          },
+          "translation": {
+            "type": "constant",
+            "value": 0
+          },
+          "split_images": {
+            "type": "constant",
+            "value": 0
+          },
+          "version": {
+            "type": "constant",
+            "value": "8.2"
+          },
+          "hd": {
+            "type": "constant",
+            "value": 0
+          },
+          "quality": {
+            "type": "constant",
+            "value": "1"
+          },
+          "style_reference": {
+            "type": "constant",
+            "value": 0
+          },
+          "moodboard": {
+            "type": "constant",
+            "value": 0
+          }
+        },
+        "tool_parameters": {
+          "prompt": {
+            "type": "constant",
+            "value": "A teal ceramic cube on a cream background, studio product photograph --ar 1:1"
+          }
+        },
+        "tool_node_version": "2",
+        "plugin_unique_identifier": "acedatacloud/midjourney:0.0.1@88c614d9fcce143a26636bcf15f7493e2f13d75f9772eafe65cb2a2fee41df28",
+        "retry_config": {
+          "retry_enabled": false,
+          "max_retries": 0,
+          "retry_interval": 1000
+        },
+        "selected": false
+      },
+      "position": {
+        "x": 300,
+        "y": 100
+      },
+      "width": 242,
+      "height": 296,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 300,
+        "y": 100
+      }
+    },
+    {
+      "id": "wait",
+      "type": "custom",
+      "data": {
+        "type": "tool",
+        "title": "Retrieve completed task",
+        "desc": "",
+        "provider_id": "acedatacloud/midjourney/midjourney",
+        "provider_name": "acedatacloud/midjourney/midjourney",
+        "provider_type": "builtin",
+        "tool_name": "midjourney_task_retrieve",
+        "tool_label": "Midjourney Retrieve Task",
+        "tool_configurations": {
+          "wait_seconds": {
+            "type": "constant",
+            "value": 240
+          }
+        },
+        "tool_parameters": {
+          "task_id": {
+            "type": "variable",
+            "value": [
+              "generate",
+              "task_id"
+            ]
+          }
+        },
+        "tool_node_version": "2",
+        "plugin_unique_identifier": "acedatacloud/midjourney:0.0.1@88c614d9fcce143a26636bcf15f7493e2f13d75f9772eafe65cb2a2fee41df28",
+        "retry_config": {
+          "retry_enabled": false,
+          "max_retries": 0,
+          "retry_interval": 1000
+        },
+        "selected": false
+      },
+      "position": {
+        "x": 600,
+        "y": 100
+      },
+      "width": 242,
+      "height": 88,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 600,
+        "y": 100
+      }
+    },
+    {
+      "id": "end",
+      "type": "custom",
+      "data": {
+        "type": "end",
+        "title": "Output",
+        "desc": "",
+        "outputs": [
+          {
+            "variable": "status",
+            "value_selector": [
+              "wait",
+              "status"
+            ]
+          },
+          {
+            "variable": "success",
+            "value_selector": [
+              "wait",
+              "success"
+            ]
+          },
+          {
+            "variable": "task_id",
+            "value_selector": [
+              "wait",
+              "task_id"
+            ]
+          },
+          {
+            "variable": "trace_id",
+            "value_selector": [
+              "wait",
+              "trace_id"
+            ]
+          },
+          {
+            "variable": "media_urls",
+            "value_selector": [
+              "wait",
+              "media_urls"
+            ]
+          },
+          {
+            "variable": "data",
+            "value_selector": [
+              "wait",
+              "data"
+            ]
+          },
+          {
+            "variable": "result",
+            "value_selector": [
+              "wait",
+              "result"
+            ]
+          },
+          {
+            "variable": "files",
+            "value_selector": [
+              "wait",
+              "files"
+            ]
+          }
+        ],
+        "selected": false
+      },
+      "position": {
+        "x": 900,
+        "y": 100
+      },
+      "width": 242,
+      "height": 270,
+      "sourcePosition": "right",
+      "targetPosition": "left",
+      "zIndex": 0,
+      "positionAbsolute": {
+        "x": 900,
+        "y": 100
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "start-generate",
+      "source": "start",
+      "target": "generate",
+      "sourceHandle": "source",
+      "targetHandle": "target",
+      "type": "custom",
+      "data": {
+        "sourceType": "start",
+        "targetType": "tool",
+        "isInIteration": false,
+        "isInLoop": false
+      },
+      "zIndex": 0
+    },
+    {
+      "id": "generate-wait",
+      "source": "generate",
+      "target": "wait",
+      "sourceHandle": "source",
+      "targetHandle": "target",
+      "type": "custom",
+      "data": {
+        "sourceType": "tool",
+        "targetType": "tool",
+        "isInIteration": false,
+        "isInLoop": false
+      },
+      "zIndex": 0
+    },
+    {
+      "id": "wait-end",
+      "source": "wait",
+      "target": "end",
+      "sourceHandle": "source",
+      "targetHandle": "target",
+      "type": "custom",
+      "data": {
+        "sourceType": "tool",
+        "targetType": "end",
+        "isInIteration": false,
+        "isInLoop": false
+      },
+      "zIndex": 0
+    }
+  ],
+  "viewport": {
+    "x": 60,
+    "y": 160,
+    "zoom": 0.8
+  }
+}
