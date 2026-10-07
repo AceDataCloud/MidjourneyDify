@@ -1,0 +1,135 @@
+{
+  "backend_revision": "fa94598267a82545fb1afed6ee26bafd6cbb9ca7",
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "tools": [
+    {
+      "tool": "midjourney_imagine",
+      "method": "POST",
+      "path": "/midjourney/imagine",
+      "parameters": [
+        "mask",
+        "mode",
+        "action",
+        "prompt",
+        "timeout",
+        "image_id",
+        "translation",
+        "callback_url",
+        "split_images",
+        "version",
+        "hd",
+        "quality",
+        "style_reference",
+        "moodboard"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/62ec82bd-7de3-427f-b71a-ab3551ac7677.json"
+    },
+    {
+      "tool": "midjourney_edits",
+      "method": "POST",
+      "path": "/midjourney/edits",
+      "parameters": [
+        "mask",
+        "mode",
+        "action",
+        "prompt",
+        "image_url",
+        "callback_url",
+        "split_images"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/9c392b44-071e-47e6-b08e-f254fe98fd22.json"
+    },
+    {
+      "tool": "midjourney_describe",
+      "method": "POST",
+      "path": "/midjourney/describe",
+      "parameters": [
+        "image_url"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/362de49d-80f1-4844-9f50-1f751e010dfe.json"
+    },
+    {
+      "tool": "midjourney_translate",
+      "method": "POST",
+      "path": "/midjourney/translate",
+      "parameters": [
+        "content"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/45761477-634a-4b7f-99c3-eaca4aaea716.json"
+    },
+    {
+      "tool": "midjourney_videos",
+      "method": "POST",
+      "path": "/midjourney/videos",
+      "parameters": [
+        "action",
+        "mode",
+        "resolution",
+        "prompt",
+        "video_id",
+        "video_index",
+        "loop",
+        "image_url",
+        "end_image_url",
+        "callback_url"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/269be0f1-c0e8-4c41-83d9-f0c107e553ae.json"
+    },
+    {
+      "tool": "midjourney_get_seed",
+      "method": "POST",
+      "path": "/midjourney/seed",
+      "parameters": [
+        "image_id"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/31835483-3336-4b69-8647-b8363a24b3aa.json"
+    },
+    {
+      "tool": "midjourney_shorten",
+      "method": "POST",
+      "path": "/midjourney/shorten",
+      "parameters": [
+        "prompt"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/934e643d-d4af-43a1-b5cd-3f9d19302aa6.json"
+    },
+    {
+      "tool": "midjourney_task_retrieve",
+      "method": "POST",
+      "path": "/midjourney/tasks",
+      "parameters": [
+        "task_id",
+        "wait_seconds",
+        "trace_id"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/ec8445de-463c-4843-868e-5fb5ed516150.json"
+    },
+    {
+      "tool": "midjourney_tasks_retrieve_batch",
+      "method": "POST",
+      "path": "/midjourney/tasks",
+      "parameters": [
+        "trace_id",
+        "ids",
+        "trace_ids",
+        "offset",
+        "limit"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/ec8445de-463c-4843-868e-5fb5ed516150.json"
+    }
+  ],
+  "mcp_scope": "midjourney",
+  "notes": [
+    "Informational MCP model/action lists are represented by tool dropdowns and README capability tables.",
+    "GPT Image covers image-generation/editing/task capabilities of the broader OpenAI MCP; chat is supplied by ModelProviderDify."
+  ]
+}

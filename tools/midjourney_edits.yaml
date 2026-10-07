@@ -8,32 +8,32 @@ description:
   human:
     en_US: Edit an image via Ace Data Cloud Midjourney Edits API.
     zh_Hans: 通过 Ace Data Cloud Midjourney Edits API 编辑图片生成。
-  llm: Edit an image with a prompt and an image_url via Midjourney Edits API. Generation
-    returns a task ID. Query the same task until complete; never resubmit a pending
-    generation.
+  llm: Edit an image via Ace Data Cloud Midjourney Edits API. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
 parameters:
 - name: mask
   type: string
   required: false
+  form: form
   label:
     en_US: Mask
     zh_Hans: 蒙版
   human_description:
     en_US: Optional mask for targeted edits.
-    zh_Hans: 可选蒙版，用于指定编辑区域。
+    zh_Hans: 可指定图像区域的蒙版位置，用于局部编辑与重新生成。
   llm_description: Optional mask for targeted edits.
-  form: form
 - name: mode
   type: select
   required: false
+  form: form
   label:
     en_US: Mode
     zh_Hans: 模式
   human_description:
     en_US: Generation mode.
-    zh_Hans: 生成模式。
+    zh_Hans: 图像编辑任务的速度模式，默认为 `fast`，可选值为 `fast`、`relax`、`turbo`。
   llm_description: Generation mode.
-  form: form
   default: fast
   options:
   - value: fast
@@ -51,49 +51,60 @@ parameters:
 - name: action
   type: string
   required: false
+  form: form
   label:
     en_US: Action
     zh_Hans: 操作
   human_description:
-    en_US: Edit action, default is generate.
-    zh_Hans: 编辑行为，默认 generate。
-  llm_description: Edit action, default is generate.
-  form: form
+    en_US: Set action; supported combinations are described by the current API.
+    zh_Hans: 操作类型。首次生成时使用 `generate`，后续操作使用返回结果中 `actions` 字段的值，以对已生成图像执行特定操作（如放大、变体等）。
+  llm_description: Set action; supported combinations are described by the current
+    API.
   default: generate
 - name: prompt
   type: string
   required: false
+  form: llm
   label:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
     en_US: Text prompt used to edit the image.
-    zh_Hans: 用于编辑图片的提示词。
+    zh_Hans: 编辑图像时使用的提示词。
   llm_description: Text prompt used to edit the image.
-  form: llm
 - name: image_url
   type: string
   required: false
+  form: form
   label:
     en_US: Image URL
     zh_Hans: 图片URL
   human_description:
     en_US: Input image URL to edit.
-    zh_Hans: 需要编辑的图片链接。
+    zh_Hans: 需要编辑的图像链接。
   llm_description: Input image URL to edit.
+- name: callback_url
+  type: string
+  required: false
   form: form
+  label:
+    en_US: Callback Url
+    zh_Hans: 回调 URL
+  human_description:
+    en_US: Set callback url for this operation.
+    zh_Hans: 用于异步通知的 Webhook 回调 URL。
+  llm_description: Set callback url for this operation.
 - name: split_images
   type: boolean
   required: false
+  form: form
   label:
     en_US: Split images
     zh_Hans: 拆分图片
   human_description:
     en_US: Return sub_image_urls when supported.
-    zh_Hans: 返回 sub_image_urls（如支持）。
+    zh_Hans: 是否将生成的图像拆分为多张单图，结果通过 `sub_image_urls` 字段返回。默认为 `false`。
   llm_description: Return sub_image_urls when supported.
-  form: form
-  default: false
 output_schema:
   type: object
   properties:

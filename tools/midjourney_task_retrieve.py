@@ -13,7 +13,7 @@ class MidjourneyTaskRetrieveTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:
         result = AceDataMidjourneyClient(
             self.runtime.credentials.get("acedata_bearer_token", "")
-        ).invoke("task", tool_parameters)
+        ).invoke("midjourney_task_retrieve", tool_parameters)
         yield self.create_json_message(result)
         for name, value in result.items():
             yield self.create_variable_message(name, value)
@@ -22,7 +22,8 @@ class MidjourneyTaskRetrieveTool(Tool):
                 "mixed" == "image"
                 or "mixed" == "mixed"
                 and any(
-                    ext in url.lower().split("?")[0] for ext in [".png", ".jpg", ".jpeg", ".webp"]
+                    suffix in url.lower().split("?")[0]
+                    for suffix in [".png", ".jpg", ".jpeg", ".webp"]
                 )
             ):
                 yield self.create_image_message(url)

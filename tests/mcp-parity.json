@@ -1,0 +1,214 @@
+{
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "mapping": [
+    {
+      "mcp_tool": "midjourney_edit",
+      "dify_tools": [
+        "midjourney_edits"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "prompt": "prompt",
+        "mode": "mode",
+        "split_images": "split_images",
+        "mask": "mask",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "midjourney_get_seed",
+      "dify_tools": [
+        "midjourney_get_seed"
+      ],
+      "parameters": {
+        "image_id": "image_id"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "midjourney_imagine",
+      "dify_tools": [
+        "midjourney_imagine"
+      ],
+      "parameters": {
+        "prompt": "prompt",
+        "mode": "mode",
+        "translation": "translation",
+        "split_images": "split_images",
+        "timeout": "timeout",
+        "callback_url": "callback_url",
+        "version": "version",
+        "hd": "hd",
+        "quality": "quality",
+        "style_reference": "style_reference",
+        "moodboard": "moodboard",
+        "image_id": "image_id",
+        "mask": "mask",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "midjourney_transform",
+      "dify_tools": [
+        "midjourney_imagine"
+      ],
+      "parameters": {
+        "image_id": "image_id",
+        "action": "action",
+        "prompt": "prompt",
+        "mask": "mask",
+        "mode": "mode"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "midjourney_blend",
+      "dify_tools": [
+        "midjourney_imagine"
+      ],
+      "parameters": {
+        "image_urls": "prompt: prepend the reference image URL(s), as in the MCP",
+        "prompt": "prompt",
+        "mode": "mode"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "midjourney_with_reference",
+      "dify_tools": [
+        "midjourney_imagine"
+      ],
+      "parameters": {
+        "reference_image_url": "prompt: prepend the reference image URL(s), as in the MCP",
+        "prompt": "prompt",
+        "mode": "mode"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "midjourney_shorten",
+      "dify_tools": [
+        "midjourney_shorten"
+      ],
+      "parameters": {
+        "prompt": "prompt"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "midjourney_list_actions",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "midjourney_get_prompt_guide",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "midjourney_list_transform_actions",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "midjourney_get_task",
+      "dify_tools": [
+        "midjourney_task_retrieve"
+      ],
+      "parameters": {
+        "task_id": "task_id",
+        "trace_id": "trace_id"
+      },
+      "unresolved": [],
+      "note": "Set action=retrieve"
+    },
+    {
+      "mcp_tool": "midjourney_get_tasks_batch",
+      "dify_tools": [
+        "midjourney_tasks_retrieve_batch"
+      ],
+      "parameters": {
+        "task_ids": "ids",
+        "trace_ids": "trace_ids",
+        "offset": "offset",
+        "limit": "limit"
+      },
+      "unresolved": [],
+      "note": "Set action=retrieve_batch"
+    },
+    {
+      "mcp_tool": "midjourney_translate",
+      "dify_tools": [
+        "midjourney_translate"
+      ],
+      "parameters": {
+        "content": "content"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "midjourney_describe",
+      "dify_tools": [
+        "midjourney_describe"
+      ],
+      "parameters": {
+        "image_url": "image_url"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "midjourney_generate_video",
+      "dify_tools": [
+        "midjourney_videos"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "prompt": "prompt",
+        "mode": "mode",
+        "resolution": "resolution",
+        "end_image_url": "end_image_url",
+        "loop": "loop",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "midjourney_extend_video",
+      "dify_tools": [
+        "midjourney_videos"
+      ],
+      "parameters": {
+        "video_id": "video_id",
+        "prompt": "prompt",
+        "video_index": "video_index",
+        "mode": "mode",
+        "resolution": "resolution",
+        "end_image_url": "end_image_url",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=extend"
+    }
+  ]
+}
