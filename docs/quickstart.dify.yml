@@ -6,12 +6,7 @@ app:
   mode: workflow
   name: Midjourney Step-by-step Tutorial
   use_icon_as_answer_icon: false
-dependencies:
-- current_identifier: null
-  type: marketplace
-  value:
-    marketplace_plugin_unique_identifier: acedatacloud/midjourney:0.0.1@75d74507527cf2d36f61f71a0fc60080443892e93732833e795d012618595e66
-    version: null
+dependencies: []
 kind: app
 version: 0.7.0
 workflow:
@@ -86,7 +81,6 @@ workflow:
       zIndex: 0
     - data:
         desc: ''
-        plugin_unique_identifier: acedatacloud/midjourney:0.0.1@75d74507527cf2d36f61f71a0fc60080443892e93732833e795d012618595e66
         provider_id: acedatacloud/midjourney/midjourney
         provider_name: acedatacloud/midjourney/midjourney
         provider_type: builtin
@@ -131,7 +125,6 @@ workflow:
       zIndex: 0
     - data:
         desc: ''
-        plugin_unique_identifier: acedatacloud/midjourney:0.0.1@75d74507527cf2d36f61f71a0fc60080443892e93732833e795d012618595e66
         provider_id: acedatacloud/midjourney/midjourney
         provider_name: acedatacloud/midjourney/midjourney
         provider_type: builtin
