@@ -1,0 +1,32 @@
+{
+  "repo": "MidjourneyDify",
+  "marketplace_url": "https://marketplace.dify.ai/plugin/acedatacloud/midjourney",
+  "identifier": "acedatacloud/midjourney:0.0.1@75d74507527cf2d36f61f71a0fc60080443892e93732833e795d012618595e66",
+  "installation_source": "marketplace",
+  "workflow_id": "e792c0ef-f5d1-4349-82bd-8bb6dfe5460e",
+  "workflow_status": "succeeded",
+  "service_status": "succeeded",
+  "case": "Midjourney Marketplace Installed Transport Readback",
+  "media_urls": [
+    "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png?imageMogr2/thumbnail/!50p",
+    "https://platform2.cdn.acedata.cloud/midjourney/df888059-a0e0-447a-8fc1-8f5fdbdc6d29.png"
+  ],
+  "outputs": {
+    "status": "succeeded",
+    "success": true,
+    "task_id": "",
+    "trace_id": ""
+  },
+  "icon_matches_source": true,
+  "paid_generation_reused": true,
+  "prior_media_decode_evidence": true,
+  "media_readback_status": "completed existing task output; generation not repeated",
+  "tested_at": "2026-10-08T01:26:57.567309+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "signature_verification_enabled": true,
+  "remote_debug_used": false,
+  "marketplace_install_tested": true,
+  "cloud_tested": false,
+  "screenshot": "evidence/marketplace-20261008.png",
+  "workflow": "evidence/marketplace-20261008-workflow.json"
+}
